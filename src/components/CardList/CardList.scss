@@ -1,0 +1,38 @@
+@import '../../assets/style/const.scss';
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap:20px;
+  width: 80vw;
+  padding: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  box-shadow: $shadow-grey;
+  gap:20px;
+  padding: 10px;
+
+  &:hover {
+    border: $color-grey 2px solid;
+    transition: all 0.5s ease;
+  }
+
+  img {
+    width: 200px;
+    border-radius: 10%;
+    box-shadow: $glow-grey;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+  }
+}

@@ -1,0 +1,33 @@
+@import '../../assets/style/const.scss';
+
+.search__form {
+  width: 300px;
+  position: relative;
+  .input {
+    width: 100%;
+    height: 42px;
+    padding-left: 10px;
+    border: 2px solid $color-grey;
+    border-radius: 5px;
+    outline: none;
+    background: $color-white;
+    color: $color-grey;
+    font-size: 20px;
+  }
+    button {
+    position: absolute; 
+    top: 0;
+    right: -15px;
+    width: 42px;
+    height: 47px;
+    border: none;
+    background: $color-grey;
+    border-radius: 0 5px 5px 0;
+    background: url(../../assets/img/search.ico) 50%  no-repeat;
+    cursor: pointer;
+    &:hover {
+      background: url(../../assets/img/search.ico)50%/auto 80% no-repeat;
+    }
+  }
+}
+
