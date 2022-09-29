@@ -4,7 +4,7 @@ import './Header.scss';
 
 class Header extends React.Component {
   state = {
-    curPage: 'Homepage',
+    curPage: 'Home page',
   };
   getNamePage(namePage: string) {
     this.setState({ ...this.state, curPage: namePage });
@@ -13,10 +13,21 @@ class Header extends React.Component {
     return (
       <header className="header container">
         <h1>{this.state.curPage}</h1>
-        <NavLink end to="/" className="link" onClick={() => this.getNamePage('Home page')}>
+        <NavLink
+          end
+          to="/"
+          className="link"
+          data-testid="home-link"
+          onClick={() => this.getNamePage('Home page')}
+        >
           Home
         </NavLink>
-        <NavLink to="/about" className="link" onClick={() => this.getNamePage('About page')}>
+        <NavLink
+          to="/about"
+          className="link"
+          data-testid="about-link"
+          onClick={() => this.getNamePage('About page')}
+        >
           About
         </NavLink>
       </header>
