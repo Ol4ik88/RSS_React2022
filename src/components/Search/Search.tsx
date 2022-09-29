@@ -17,6 +17,9 @@ class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
   onHandleClick(e: FormEvent) {
     e.preventDefault();
   }
+  componentDidMount() {
+    this.onHandleChange(this.state.searchQuery);
+  }
   componentWillUnmount() {
     localStorage.setItem('searchQuery', this.state.searchQuery);
   }
@@ -25,6 +28,7 @@ class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
       <section className="search">
         <form className="search__form">
           <input
+            data-testid="Search"
             className="input"
             type="text"
             placeholder="Enter text"
