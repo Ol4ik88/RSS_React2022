@@ -13,7 +13,7 @@ class CardList extends React.Component<ICards> {
   }
   render() {
     return (
-      <section className="cards">
+      <section className="cards" data-testid="card-list">
         {this.props.cards.map((card) => {
           return <CardItem card={card} key={card.id} />;
         })}

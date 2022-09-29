@@ -4,7 +4,7 @@ import './CardList.scss';
 
 function CardItem(props: ICardItem) {
   return (
-    <div className="card">
+    <div className="card" data-testid="card">
       <img src={props.card.img} className="foto" alt="foto" />
       <h2>{props.card.title}</h2>
       <p>{props.card.description}</p>
