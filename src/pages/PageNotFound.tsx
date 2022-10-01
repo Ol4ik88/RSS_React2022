@@ -4,7 +4,7 @@ import './PageNotFound.scss';
 function PageNotFound() {
   return (
     <section className="Page404" data-testid="PageNotFound">
-      <h1>404</h1>
+      <h2>404</h2>
     </section>
   );
 }

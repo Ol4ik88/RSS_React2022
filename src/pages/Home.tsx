@@ -20,7 +20,7 @@ class Home extends React.Component<PropsComponent, ICards> {
   render() {
     return (
       <section className="home container" data-testid="HomePage">
-        <h1>It&apos;s homepage</h1>
+        <h2>It&apos;s homepage</h2>
         <Search filter={this.filterList} />
         <CardList cards={this.state.cards} />
       </section>
