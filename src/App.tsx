@@ -4,6 +4,7 @@ import Header from 'components/Header/Header';
 import Home from 'pages/Home';
 import About from 'pages/About';
 import PageNotFound from 'pages/PageNotFound';
+import FormPage from 'pages/FormPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/form" element={<FormPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

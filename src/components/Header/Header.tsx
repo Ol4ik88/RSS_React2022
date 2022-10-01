@@ -30,6 +30,15 @@ class Header extends React.Component {
         >
           About
         </NavLink>
+        <NavLink
+          end
+          to="/form"
+          className="link"
+          data-testid="form-link"
+          onClick={() => this.getNamePage('Form page')}
+        >
+          Form
+        </NavLink>
       </header>
     );
   }
