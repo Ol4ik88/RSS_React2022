@@ -1,0 +1,51 @@
+@import '../../assets/style/const.scss';
+
+.cards-form {
+  display: flex;
+  flex-direction: column;
+  gap:13px;
+  padding: 10px;
+}
+
+.cards-form__items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 45px;
+  gap:5px;
+}
+
+.cards-form__label,
+.cards-form__input,
+.cards-form__label-file,
+.cards-form__input-file,
+.cards-form__select {
+  font-size: 20px;
+  color: $color-lilac;
+}
+.cards-form__input,
+.cards-form__select {
+  border-radius: 5px;
+  border: $color-grey 2px solid;
+  &:focus {
+    box-shadow: $glow-grey;
+    outline:none;
+  }
+}
+
+.cards-form__error-message {
+  color: $color-error;
+  font-size: 12px;
+}
+
+.cards-form__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;  
+}
+
+.cards-form__message {
+  color: $color-lilac;
+}
