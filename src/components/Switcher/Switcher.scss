@@ -1,0 +1,54 @@
+@import '../../assets/style/const.scss';
+
+.cards-form__switcher {
+  display: flex;
+  gap: 10px;
+}
+.switcher__title {
+  font-size: 20px;
+  color: $color-lilac;
+}
+.switcher__control {
+  width: 110px;
+  height: 26px;
+  background: $color-lilac;
+  position: relative;
+  border-radius: 50px;
+  &:after {
+    content: 'male';
+    color: $color-white;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font: 12px/26px $font-family;
+    font-weight: bold;
+  }
+  &:before {
+    content: 'female';
+    color: $color-white;
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font: 12px/26px $font-family;
+    font-weight: bold;
+  }
+  label {
+    display: block;
+    width: 50px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: $color-white;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+  }
+  input[type=checkbox] {
+    display: none;
+    &:checked + label {
+      left: 57px;
+    }
+  }    
+}
