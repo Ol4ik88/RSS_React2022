@@ -2,9 +2,9 @@ import CardList from '../components/CardList/CardList';
 import Search from '../components/Search/Search';
 import React from 'react';
 import cards from '../data/data';
-import { ICards, PropsComponent } from 'type/type';
+import { IStateCards, PropsComponent } from 'type/type';
 
-class Home extends React.Component<PropsComponent, ICards> {
+class Home extends React.Component<PropsComponent, IStateCards> {
   constructor(props: PropsComponent) {
     super(props);
     this.state = {

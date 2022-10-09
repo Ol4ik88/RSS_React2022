@@ -4,15 +4,15 @@ import './Header.scss';
 
 class Header extends React.Component {
   state = {
-    curPage: 'Home page',
+    currentPage: 'Home page',
   };
   getNamePage(namePage: string) {
-    this.setState({ ...this.state, curPage: namePage });
+    this.setState({ ...this.state, currentPage: namePage });
   }
   render() {
     return (
       <header className="header container">
-        <h1>{this.state.curPage}</h1>
+        <h1>{this.state.currentPage}</h1>
         <NavLink
           end
           to="/"
