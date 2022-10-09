@@ -16,8 +16,10 @@
   border: 2px solid transparent;
   border-radius: 14px;
   box-shadow: $shadow-grey;
-  gap:20px;
+  gap:10px;
   padding: 10px;
+  color: $color-lilac;
+  width: 224px;
 
   &:hover {
     border: $color-grey 2px solid;
