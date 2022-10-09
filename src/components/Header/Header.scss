@@ -9,23 +9,24 @@
   background-color: $color-pink;
   justify-content: center;
   align-items: center;
+}
 
-  & a, a.inactive {
-    width: 130px;
-    height: 20px;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: $font-family;
-    font-weight: 700;
-    background: $color-grey;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: $shadow-btn;
-    text-align: center;
-    
-    &:hover, &.active:hover {
-    color:  $color-grey;
+.button,
+.link,
+a.inactive {
+  width: 130px;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: $font-family;
+  font-weight: 700;
+  background: $color-grey;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: $shadow-btn;
+  text-align: center;
+  &:hover, &.active:hover {
+    color: $color-grey;
     background: transparent;
     box-shadow:none;
   }
@@ -52,10 +53,20 @@
     width:100%;
     transition:800ms ease all;
   }
-    &.active{
-      background-color: $color-white;
-      color: $color-grey
-    }
+  &.active{
+    background-color: $color-white;
+    color: $color-grey;
   }
-
+}
+.button {
+  height: 38px;
+  border: transparent;
+  cursor: pointer;
+  &:hover {
+    color: $color-lilac;
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: rgb(199, 199, 199);
+  }
 }

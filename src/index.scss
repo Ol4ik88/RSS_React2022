@@ -1,11 +1,13 @@
 @import './assets/style/const.scss';
 
+* {
+  box-sizing: border-box;
+}
 a,
 a:visited,
 a:focus,
 a:hover {
   text-decoration: none;
-  color: inherit;
 }
 
 #root {
@@ -28,4 +30,9 @@ a:hover {
     max-width: 100%;
     padding: 20px;
     margin: 0 auto;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
 }
