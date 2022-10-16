@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
-import { IFilterSearch } from 'type/type';
 import './Search.scss';
+import { IFilterSearch } from './Search.type';
 
 class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
   constructor(props: IFilterSearch) {
@@ -12,10 +12,11 @@ class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
   }
   onHandleChange(value: string) {
     this.setState({ searchQuery: value });
-    this.props.filter(value);
+    /* this.props.filter(value); */
   }
   onHandleClick(e: FormEvent) {
     e.preventDefault();
+    this.props.filter(this.state.searchQuery);
   }
   componentDidMount() {
     this.onHandleChange(this.state.searchQuery);
@@ -29,12 +30,13 @@ class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
         <form className="search__form">
           <input
             data-testid="Search"
-            className="input"
+            className="search__input"
             type="text"
-            placeholder="Enter text"
+            placeholder="Enter race character"
             value={this.state.searchQuery}
             onChange={(e) => this.onHandleChange(e.target.value)}
           />
+          <label className="search__label">{this.props.label}</label>
           <button type="submit" onClick={(e) => this.onHandleClick(e)} />
         </form>
       </section>

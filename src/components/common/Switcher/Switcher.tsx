@@ -1,6 +1,6 @@
 import React from 'react';
-import { ISwitcer } from 'type/type';
 import './Switcher.scss';
+import { ISwitcer } from './Switcher.type';
 
 class Switcher extends React.Component<ISwitcer> {
   render() {

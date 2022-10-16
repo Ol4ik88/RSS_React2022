@@ -1,5 +1,5 @@
 import React from 'react';
-import { IButton } from 'type/type';
+import { IButton } from './Button.type';
 
 class Button extends React.Component<IButton> {
   render() {

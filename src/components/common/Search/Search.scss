@@ -1,9 +1,9 @@
-@import '../../assets/style/const.scss';
+@import '../../../assets/style/const.scss';
 
 .search__form {
   width: 300px;
   position: relative;
-  .input {
+  .search__input {
     width: 100%;
     height: 42px;
     padding-left: 10px;
@@ -23,11 +23,15 @@
     border: none;
     background: $color-grey;
     border-radius: 0 5px 5px 0;
-    background: url(../../assets/img/search.ico) 50%  no-repeat;
+    background: url(../../../assets/img/search.ico) 50%  no-repeat;
     cursor: pointer;
     &:hover {
-      background: url(../../assets/img/search.ico)50%/auto 80% no-repeat;
+      background: url(../../../assets/img/search.ico)50%/auto 80% no-repeat;
     }
   }
 }
 
+.search__label {
+  font-size: 14px;
+  color: $color-lilac;
+}
