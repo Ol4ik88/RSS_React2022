@@ -1,6 +1,6 @@
 import React from 'react';
-import { ICardItem } from 'type/type';
-import './CardList.scss';
+import '../CardList.scss';
+import { ICardItem } from './CardItem.type';
 
 function CardItem(props: ICardItem) {
   return (
