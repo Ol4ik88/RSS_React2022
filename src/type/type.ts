@@ -28,7 +28,7 @@ export interface ICharacter {
   wikiUrl: string;
 }
 
-export interface IStateCardsAPI {
+export interface IStateCharacter {
   cards: ICharacter[];
   isLoaded: boolean;
   showCard: ICharacter;

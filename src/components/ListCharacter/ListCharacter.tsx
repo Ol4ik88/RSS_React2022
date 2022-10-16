@@ -1,9 +1,9 @@
 import React from 'react';
 import CardCharacter from './CardCharacter/CardCharacter';
 import '../CardList/CardList.scss';
-import { ICardListAPI } from './ListCharacter.type';
+import { IListCharacter } from './ListCharacter.type';
 
-class ListCharacter extends React.Component<ICardListAPI> {
+class ListCharacter extends React.Component<IListCharacter> {
   render() {
     return (
       <section className="cards" data-testid="ListCharacter">

@@ -1,6 +1,6 @@
 import Search from '../components/common/Search/Search';
 import React from 'react';
-import { ICharacter, IStateCardsAPI, PropsComponent } from 'type/type';
+import { ICharacter, IStateCharacter, PropsComponent } from 'type/type';
 import ListCharacter from 'components/ListCharacter/ListCharacter';
 import './Home.scss';
 import Loading from 'components/common/Loading/Loading';
@@ -9,7 +9,7 @@ import Modal from 'components/common/Modal/Modal';
 const HOST = 'https://the-one-api.dev/v2/';
 const TOKEN = 'utxRxt1T7kr6gmJDi5LI';
 
-class Home extends React.Component<PropsComponent, IStateCardsAPI> {
+class Home extends React.Component<PropsComponent, IStateCharacter> {
   constructor(props: PropsComponent) {
     super(props);
     this.state = {

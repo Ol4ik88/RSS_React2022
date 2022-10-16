@@ -12,7 +12,6 @@ class Search extends React.Component<IFilterSearch, { searchQuery: string }> {
   }
   onHandleChange(value: string) {
     this.setState({ searchQuery: value });
-    /* this.props.filter(value); */
   }
   onHandleClick(e: FormEvent) {
     e.preventDefault();

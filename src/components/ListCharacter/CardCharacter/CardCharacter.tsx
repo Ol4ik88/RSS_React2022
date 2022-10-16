@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../CardList/CardList.scss';
-import { ICardAPI } from './CardCharacter.type';
+import { ICardCharacter } from './CardCharacter.type';
 
-class CardCharacter extends React.Component<ICardAPI> {
+class CardCharacter extends React.Component<ICardCharacter> {
   render() {
     const { card, onShowModal } = this.props;
     return (
