@@ -1,5 +1,5 @@
 import React from 'react';
-import { IFormInput } from 'type/type';
+import { IFormInput } from './FormInput.type';
 
 class FormInput extends React.Component<IFormInput> {
   render() {

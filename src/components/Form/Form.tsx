@@ -1,10 +1,12 @@
-import Button from 'components/Button/Button';
+import Button from 'components/common/Button/Button';
 import FormInput from 'components/FormInput/FormInput ';
+import { IFormInput } from 'components/FormInput/FormInput.type';
 import FormSelect from 'components/FormSelect/FormSelect';
-import Switcher from 'components/Switcher/Switcher';
+import Switcher from 'components/common/Switcher/Switcher';
 import React, { createRef } from 'react';
-import { IFormInput, ICard, IPropsForm, IStateForm, ElementKeys } from 'type/type';
+import { ICard } from 'type/type';
 import './Form.scss';
+import { ElementKeys, IPropsForm, IStateForm } from './Form.type';
 
 class Form extends React.Component<IPropsForm, IStateForm> {
   nameInput: React.RefObject<HTMLInputElement>;
@@ -46,8 +48,6 @@ class Form extends React.Component<IPropsForm, IStateForm> {
     this.setState((oldState) => {
       return { ...oldState, [element]: true, isValid: false };
     }, this.enableButton);
-
-    console.log(this.state);
   };
   enableButton = () => {
     if (

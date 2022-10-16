@@ -1,6 +1,6 @@
 import React from 'react';
 import { IStateCards } from 'type/type';
-import CardItem from './CardItem';
+import CardItem from './CardItem/CardItem';
 import './CardList.scss';
 
 class CardList extends React.Component<IStateCards> {

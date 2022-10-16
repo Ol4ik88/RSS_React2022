@@ -1,5 +1,5 @@
 import React from 'react';
-import { IFormSelect } from 'type/type';
+import { IFormSelect } from './FormSelect.type';
 
 class FormSelect extends React.Component<IFormSelect> {
   render() {
