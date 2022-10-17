@@ -8,7 +8,7 @@ import './Form.scss';
 
 class Form extends React.Component<IPropsForm, IStateForm> {
   nameInput: React.RefObject<HTMLInputElement>;
-  dataInput: React.RefObject<HTMLInputElement>;
+  dateInput: React.RefObject<HTMLInputElement>;
   kindSelect: React.RefObject<HTMLSelectElement>;
   fileInput: React.RefObject<HTMLInputElement>;
   checkboxInput: React.RefObject<HTMLInputElement>;
@@ -17,7 +17,7 @@ class Form extends React.Component<IPropsForm, IStateForm> {
   constructor(props: IPropsForm) {
     super(props);
     this.nameInput = createRef();
-    this.dataInput = createRef();
+    this.dateInput = createRef();
     this.kindSelect = createRef();
     this.fileInput = createRef();
     this.checkboxInput = createRef();
@@ -84,14 +84,14 @@ class Form extends React.Component<IPropsForm, IStateForm> {
 
   getFormElements = () => {
     const nameInput = this.nameInput.current as HTMLInputElement;
-    const dataInput = this.dataInput.current as HTMLInputElement;
+    const dateInput = this.dateInput.current as HTMLInputElement;
     const fileInput = this.fileInput.current as HTMLInputElement;
     const kindSelect = this.kindSelect.current as HTMLSelectElement;
     const checkboxInput = this.checkboxInput.current as HTMLInputElement;
     const switcherInput = this.switcherInput.current as HTMLInputElement;
     return {
       nameInput,
-      dataInput,
+      dateInput,
       fileInput,
       kindSelect,
       checkboxInput,
@@ -100,7 +100,7 @@ class Form extends React.Component<IPropsForm, IStateForm> {
   };
 
   isFormValidation = () => {
-    const { nameInput, dataInput, fileInput, checkboxInput } = this.getFormElements();
+    const { nameInput, dateInput, fileInput, checkboxInput } = this.getFormElements();
     let isValid = true;
     isValid =
       this.isValidInput(
@@ -109,10 +109,11 @@ class Form extends React.Component<IPropsForm, IStateForm> {
         nameInput
       ) && isValid;
 
-    const dataValue = new Date(dataInput.value);
-    const curData = new Date();
+    const dateValue = new Date(dateInput.value);
+    const currentDate = new Date();
     isValid =
-      this.isValidInput(!dataInput.value || dataValue > curData, 'birthday', dataInput) && isValid;
+      this.isValidInput(!dateInput.value || dateValue > currentDate, 'birthday', dateInput) &&
+      isValid;
 
     isValid =
       this.isValidInput(!fileInput.files || fileInput.files.length === 0, 'file', fileInput) &&
@@ -125,7 +126,7 @@ class Form extends React.Component<IPropsForm, IStateForm> {
 
   onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { nameInput, dataInput, fileInput, kindSelect, checkboxInput, switcherInput } =
+    const { nameInput, dateInput, fileInput, kindSelect, checkboxInput, switcherInput } =
       this.getFormElements();
 
     if (!this.isFormValidation()) {
@@ -138,7 +139,7 @@ class Form extends React.Component<IPropsForm, IStateForm> {
 
     const newCard: ICard = {
       name: nameInput.value,
-      birthday: dataInput.value,
+      birthday: dateInput.value,
       img: URL.createObjectURL((fileInput.files as FileList)[0]),
       kind: kindSelect.value,
       sex: switcherInput.checked ? 'female' : 'male',
@@ -149,11 +150,11 @@ class Form extends React.Component<IPropsForm, IStateForm> {
   };
 
   resetStateInputs = () => {
-    const { nameInput, dataInput, fileInput, kindSelect, checkboxInput, switcherInput } =
+    const { nameInput, dateInput, fileInput, kindSelect, checkboxInput, switcherInput } =
       this.getFormElements();
 
     nameInput.value = '';
-    dataInput.value = '';
+    dateInput.value = '';
     fileInput.value = '';
     kindSelect.options[0].selected = true;
     switcherInput.checked = false;
@@ -186,7 +187,7 @@ class Form extends React.Component<IPropsForm, IStateForm> {
         type: 'date',
         isValid: this.state.birthday,
         errorMessage: 'Please enter correct birthday',
-        reference: this.dataInput,
+        reference: this.dateInput,
       },
       {
         label: 'Profile picture: ',
