@@ -69,7 +69,7 @@ class Home extends React.Component<PropsComponent, IStateCharacter> {
   render() {
     const { cards, isLoaded, activeModal, showCard } = this.state;
     return (
-      <section className="home container" data-testid="HomePage">
+      <section className="home container">
         <h2>It&apos;s homepage</h2>
         {
           <Search

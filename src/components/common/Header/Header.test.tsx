@@ -5,8 +5,8 @@ import App from '../../../App';
 import userEvent from '@testing-library/user-event';
 import Header from './Header';
 
-describe('Renders header-component', () => {
-  test('renders header', () => {
+describe('<Header />', () => {
+  test('should render header', () => {
     render(
       <Router>
         <Header />
@@ -15,7 +15,7 @@ describe('Renders header-component', () => {
     const headerMenu = screen.getByRole('banner');
     expect(headerMenu).toBeInTheDocument();
   });
-  test('renders all links', () => {
+  test('should render all links', () => {
     render(
       <Router>
         <App />
@@ -24,7 +24,7 @@ describe('Renders header-component', () => {
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(3);
   });
-  test('renders current home name', () => {
+  test('should render current home name', () => {
     render(
       <Router>
         <App />
@@ -36,7 +36,7 @@ describe('Renders header-component', () => {
     const curPageHome = screen.getByText('Home page');
     expect(curPageHome).toBeInTheDocument();
   });
-  test('renders current about name', () => {
+  test('should render current about name', () => {
     render(
       <Router>
         <App />
@@ -48,7 +48,7 @@ describe('Renders header-component', () => {
     const curPageAbout = screen.getByText('About page');
     expect(curPageAbout).toBeInTheDocument();
   });
-  test('renders current form name', () => {
+  test('should render current form name', () => {
     render(
       <Router>
         <App />

@@ -2,15 +2,16 @@ import React from 'react';
 import '../CardList.scss';
 import { ICardItem } from './CardItem.type';
 
-function CardItem(props: ICardItem) {
+function CardItem({ card }: ICardItem) {
+  const { img, title, name, birthday, kind, sex, description } = card;
   return (
     <div className="card" data-testid="card">
-      <img src={props.card.img as string} className="foto" alt="foto" />
-      <h2>{props.card.title || props.card.name}</h2>
-      {props.card.birthday && <div>birthday: {props.card.birthday}</div>}
-      {props.card.kind && <div>kind: {props.card.kind}</div>}
-      {props.card.sex && <div>sex: {props.card.sex}</div>}
-      {props.card.description && <div>description: {props.card.description}</div>}
+      {img && <img src={img} className="foto" alt="foto" />}
+      <h2>{title || name}</h2>
+      {birthday && <div>birthday: {birthday}</div>}
+      {kind && <div>kind: {kind}</div>}
+      {sex && <div>sex: {sex}</div>}
+      {description && <div>description: {description}</div>}
     </div>
   );
 }
