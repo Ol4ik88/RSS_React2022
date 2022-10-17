@@ -30,7 +30,7 @@ describe('<Header />', () => {
         <App />
       </Router>
     );
-    const homePageLink = screen.getByTestId('home-link');
+    const homePageLink = screen.getByText('Home');
 
     userEvent.click(homePageLink);
     const curPageHome = screen.getByText('Home page');
@@ -42,7 +42,7 @@ describe('<Header />', () => {
         <App />
       </Router>
     );
-    const aboutPageLink = screen.getByTestId('about-link');
+    const aboutPageLink = screen.getByText('About');
 
     userEvent.click(aboutPageLink);
     const curPageAbout = screen.getByText('About page');
@@ -54,7 +54,7 @@ describe('<Header />', () => {
         <App />
       </Router>
     );
-    const formPageLink = screen.getByTestId('form-link');
+    const formPageLink = screen.getByText('Form');
 
     userEvent.click(formPageLink);
     const curPageHome = screen.getByText('Form page');

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
 
 describe('Router', () => {
-  test('renders home page', () => {
+  test('should render home page', () => {
     render(
       <Router>
         <App />
@@ -17,7 +17,7 @@ describe('Router', () => {
     expect(screen.getByText(/HomePage/i)).toBeInTheDocument();
   });
 
-  test('renders about page', () => {
+  test('should render about page', () => {
     render(
       <Router>
         <App />
@@ -29,7 +29,7 @@ describe('Router', () => {
     expect(screen.getByText(/AboutPage/i)).toBeInTheDocument();
   });
 
-  test('renders form page', () => {
+  test('should render form page', () => {
     render(
       <Router>
         <App />

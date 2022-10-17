@@ -11,13 +11,13 @@ const localStorageMock = {
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
 describe('Search', () => {
-  test('renders search input', () => {
+  test('should render search input', () => {
     render(<Home />);
     const input = screen.getByTestId('Search');
     expect(input).toBeInTheDocument();
   });
 
-  test('renders input value empty if LocalStorage empty', () => {
+  test('should render input value empty if LocalStorage empty', () => {
     render(<Home />);
     const input = screen.getByTestId('Search');
     expect(input).toHaveValue('');
@@ -25,12 +25,12 @@ describe('Search', () => {
 });
 
 describe('Local Storage', () => {
-  test('renders input value if LocalStorage contain it', () => {
+  test('should render input value if LocalStorage contain it', () => {
     render(<Home />);
     expect(localStorageMock.getItem).toHaveBeenCalledTimes(1);
   });
 
-  test('renders input after unmount', () => {
+  test('should render input after unmount', () => {
     const { unmount } = render(<Home />);
     const input = screen.getByPlaceholderText(/Enter/i);
 
