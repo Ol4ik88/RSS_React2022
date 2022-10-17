@@ -15,7 +15,7 @@ describe('<Modal />', () => {
     const modalOverlay = screen.getByTestId('modal-overlay');
     expect(modalOverlay).not.toHaveClass('active');
   });
-  test('renders card content in modal', async () => {
+  test('should render card content in modal', async () => {
     render(<Modal card={fakeCards.docs[0]} activeModal={true} onClose={closeModal} />);
     const content = screen.getByRole('heading');
     expect(content).toHaveTextContent(fakeCards.docs[0].name);
