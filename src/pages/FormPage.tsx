@@ -20,7 +20,7 @@ class FormPage extends React.Component<PropsComponent, IStateCards> {
 
   render() {
     return (
-      <section className="form-page container" data-testid="FormPage">
+      <section className="form-page container">
         <h2> It&apos;s FormPage</h2>
         <Form addCard={this.addCard} />
         <CardList cards={this.state.cards} />
