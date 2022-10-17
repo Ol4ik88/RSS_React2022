@@ -11,10 +11,10 @@ describe('Router', () => {
         <App />
       </Router>
     );
-    const homePageLink = screen.getByTestId('home-link');
+    const homePageLink = screen.getByText('Home');
 
     userEvent.click(homePageLink);
-    expect(screen.getByTestId('HomePage')).toBeInTheDocument();
+    expect(screen.getByText(/HomePage/i)).toBeInTheDocument();
   });
 
   test('renders about page', () => {
@@ -23,10 +23,10 @@ describe('Router', () => {
         <App />
       </Router>
     );
-    const aboutPageLink = screen.getByTestId('about-link');
+    const aboutPageLink = screen.getByText('About');
 
     userEvent.click(aboutPageLink);
-    expect(screen.getByTestId('AboutPage')).toBeInTheDocument();
+    expect(screen.getByText(/AboutPage/i)).toBeInTheDocument();
   });
 
   test('renders form page', () => {
@@ -35,10 +35,10 @@ describe('Router', () => {
         <App />
       </Router>
     );
-    const formPageLink = screen.getByTestId('form-link');
+    const formPageLink = screen.getByText('Form');
 
     userEvent.click(formPageLink);
-    expect(screen.getByTestId('FormPage')).toBeInTheDocument();
+    expect(screen.getByText(/FormPage/i)).toBeInTheDocument();
   });
 
   test('page not found', () => {
@@ -47,6 +47,6 @@ describe('Router', () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByTestId('PageNotFound')).toBeInTheDocument();
+    expect(screen.getByText('404')).toBeInTheDocument();
   });
 });
