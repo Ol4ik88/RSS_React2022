@@ -5,12 +5,20 @@ import { fakeCards } from 'data/data';
 import userEvent from '@testing-library/user-event';
 
 describe('<CardCharapter />', () => {
-  test('renders card elements', () => {
+  test('should render name on card', () => {
     render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
     const name = screen.getByRole('heading');
     expect(name).toBeInTheDocument();
+  });
+  test('should render race on card', () => {
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
     const race = screen.getByText(/race/i);
     expect(race).toBeInTheDocument();
+    const gender = screen.getByText(/gender/i);
+    expect(gender).toBeInTheDocument();
+  });
+  test('should render gender on card', () => {
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
     const gender = screen.getByText(/gender/i);
     expect(gender).toBeInTheDocument();
   });

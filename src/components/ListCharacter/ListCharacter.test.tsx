@@ -4,7 +4,7 @@ import Home from '../../pages/Home';
 import { fakeCards } from 'data/data';
 
 describe('<ListCharacter />', () => {
-  test('renders list character', async () => {
+  test('should render list character', async () => {
     window.fetch = jest
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));
@@ -14,7 +14,7 @@ describe('<ListCharacter />', () => {
     expect(cardList).toBeInTheDocument();
   });
 
-  test('renders all cards', async () => {
+  test('should render all cards', async () => {
     window.fetch = jest
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));

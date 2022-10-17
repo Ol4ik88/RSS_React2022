@@ -17,7 +17,7 @@ describe('<Modal />', () => {
   });
   test('should render card content in modal', async () => {
     render(<Modal card={fakeCards.docs[0]} activeModal={true} onClose={closeModal} />);
-    const content = screen.getByRole('heading');
+    const content = screen.getByRole('heading', { name: 'Aegnor' });
     expect(content).toHaveTextContent(fakeCards.docs[0].name);
   });
 });
