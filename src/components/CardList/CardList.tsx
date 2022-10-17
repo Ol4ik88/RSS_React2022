@@ -10,8 +10,8 @@ class CardList extends React.Component<IStateCards> {
   render() {
     return (
       <section className="cards" data-testid="card-list">
-        {this.props.cards.map((card, i) => {
-          return <CardItem card={card} key={card.id || i} />;
+        {this.props.cards.map((card) => {
+          return <CardItem card={card} key={card.id || `${card.birthday} + ${card.name}`} />;
         })}
       </section>
     );
