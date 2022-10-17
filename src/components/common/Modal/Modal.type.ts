@@ -3,5 +3,5 @@ import { ICharacter } from 'type/type';
 export interface IPropModal {
   card: ICharacter;
   activeModal: boolean;
-  onClose: () => void;
+  setActive: (active: boolean) => void;
 }
