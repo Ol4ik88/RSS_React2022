@@ -4,12 +4,12 @@ import userEvent from '@testing-library/user-event';
 import FormPage from 'pages/FormPage';
 
 describe('<FormSelect />', () => {
-  test('renders select-component', () => {
+  test('should render select-component', () => {
     render(<FormPage />);
     const selectInput = screen.getByRole('combobox');
     expect(selectInput).toBeInTheDocument();
   });
-  test('renders value selection', () => {
+  test('should render value selection', () => {
     render(<FormPage />);
     const selectInput = screen.getByRole('combobox');
     userEvent.selectOptions(selectInput, screen.getByRole('option', { name: 'Dog' }));

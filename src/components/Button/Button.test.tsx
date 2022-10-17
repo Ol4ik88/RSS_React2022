@@ -4,22 +4,22 @@ import Form from 'components/Form/Form';
 import FormPage from 'pages/FormPage';
 import React from 'react';
 
-describe('Renders <Button/>', () => {
-  test('renders buttons', () => {
+describe('<Button />', () => {
+  test('should render buttons', () => {
     render(<FormPage />);
     const buttons = screen.getAllByRole('button');
     expect(buttons).toHaveLength(2);
   });
-  test('initially the buttons are disable', () => {
+  test('should render disabled buttons on init', () => {
     const card = {
       img: 'url',
     };
     const addCard = jest.fn((card) => card);
     render(<Form addCard={addCard(card)} />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons[0]).toBeDisabled();
+    const button = screen.getByRole('button', { name: 'Create card' });
+    expect(button).toBeDisabled();
   });
-  test('after the first input the button is not disable', () => {
+  test('should render available button when input was changed', () => {
     const card = {
       img: 'url',
     };
@@ -27,10 +27,10 @@ describe('Renders <Button/>', () => {
     render(<Form addCard={addCard(card)} />);
     const nameInput = screen.getByLabelText(/Name:/i);
     userEvent.type(nameInput, 'Name');
-    const buttons = screen.getAllByRole('button');
-    expect(buttons[0]).not.toBeDisabled();
+    const button = screen.getByRole('button', { name: 'Create card' });
+    expect(button).not.toBeDisabled();
   });
-  test('after invalid input, click on the submit button, the button is disabled again', () => {
+  test('should the button is disabled again after invalid input and clicking the submit button', () => {
     const card = {
       img: 'url',
     };
@@ -38,11 +38,11 @@ describe('Renders <Button/>', () => {
     render(<Form addCard={addCard(card)} />);
     const nameInput = screen.getByLabelText(/Name:/i);
     userEvent.type(nameInput, 'N');
-    const buttons = screen.getAllByRole('button');
-    userEvent.click(buttons[0]);
-    expect(buttons[0]).toBeDisabled();
+    const button = screen.getByRole('button', { name: 'Create card' });
+    userEvent.click(button);
+    expect(button).toBeDisabled();
   });
-  test('click on the reset button, clear input fields', () => {
+  test('should reset the input fields after clicking on the reset button', () => {
     const card = {
       img: 'url',
     };
@@ -50,8 +50,8 @@ describe('Renders <Button/>', () => {
     render(<Form addCard={addCard(card)} />);
     const nameInput = screen.getByLabelText(/Name:/i);
     userEvent.type(nameInput, 'Name');
-    const buttons = screen.getAllByRole('button');
-    userEvent.click(buttons[1]);
+    const button = screen.getByRole('button', { name: 'Reset input' });
+    userEvent.click(button);
     expect(nameInput).toHaveValue('');
   });
 });
