@@ -4,16 +4,16 @@ import { IPropModal } from './Modal.type';
 
 class Modal extends React.Component<IPropModal> {
   render() {
-    const { activeModal, onClose, card } = this.props;
+    const { isModalActive, onClose, card } = this.props;
     return (
       <div
-        className={activeModal ? 'modal active' : 'modal'}
+        className={isModalActive ? 'modal active' : 'modal'}
         onClick={onClose}
         data-testid="modal-overlay"
       >
-        <div className="modal__btn"></div>
+        <div className="modal__close-btn"></div>
         <div
-          className={activeModal ? 'modal__content active' : 'modal__content'}
+          className={isModalActive ? 'modal__content active' : 'modal__content'}
           onClick={(e) => e.stopPropagation()}
         >
           <h2>{card.name}</h2>
