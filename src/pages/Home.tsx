@@ -1,7 +1,7 @@
 import Search from '../components/common/Search/Search';
 import React from 'react';
 import { ICharacter, IStateCharacter, PropsComponent } from 'type/type';
-import ListCharacter from 'components/ListCharacter/ListCharacter';
+import ListCharacter from 'components/ListCharacter/CharactersList';
 import './Home.scss';
 import Loading from 'components/common/Loading/Loading';
 import Modal from 'components/common/Modal/Modal';
@@ -71,27 +71,21 @@ class Home extends React.Component<PropsComponent, IStateCharacter> {
     return (
       <section className="home container">
         <h2>It&apos;s homepage</h2>
-        {
-          <Search
-            filter={this.filterList}
-            label="Input example race characte: Elf, Human, Hobbit, Orc, Dwarf, Orc"
-          />
-        }
+        <Search
+          filter={this.filterList}
+          label="Input example race characte: Elf, Human, Hobbit, Orc, Dwarf, Orc"
+        />
         <>
-          {!isLoaded ? (
-            <div>
-              <Loading />
-            </div>
-          ) : cards.length !== 0 ? (
-            <>
-              <h2>Character Information about The Lord of the Rings</h2>
-              <ListCharacter cards={cards} onShowModal={this.showModal} />
-            </>
+          <div>
+            <Loading isLoaded={isLoaded} />
+          </div>
+          {cards.length !== 0 ? (
+            <ListCharacter cards={cards} onShowModal={this.showModal} />
           ) : (
             <div>no data found</div>
           )}
         </>
-        <Modal card={showCard} activeModal={activeModal} onClose={this.closeModal} />
+        <Modal card={showCard} isModalActive={activeModal} onClose={this.closeModal} />
       </section>
     );
   }
