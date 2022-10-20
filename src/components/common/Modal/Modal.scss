@@ -14,37 +14,37 @@
   opacity: 0;
   pointer-events: none;
   transition: 0.5s;
-}
 
-.modal.active {
-  opacity: 1;
-  pointer-events: all;
-}
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 
-.modal__btn {
-  width:30px;
-  height: 30px;
-  border: 2px solid $color-lilac;
-  border-radius: 10px;
-  margin-left: 400px;
-  background: url(../../../assets/img/modalBtnsvg.svg) 50%  no-repeat;
-    cursor: pointer;
-    &:hover {
-      background: $color-grey url(../../../assets/img/modalBtnsvg.svg) 50%  no-repeat;
+  &__close-btn {
+    width:30px;
+    height: 30px;
+    border: 2px solid $color-lilac;
+    border-radius: 10px;
+    margin-left: 400px;
+    background: url(../../../assets/img/modalBtnsvg.svg) 50%  no-repeat;
+      cursor: pointer;
+      &:hover {
+        background: $color-grey url(../../../assets/img/modalBtnsvg.svg) 50%  no-repeat;
+      }
+  }
+
+  &__content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: $color-white;
+    height: 230px;
+    width: 400px;
+    color: $color-lilac;
+    transform: scale(0.5);
+    transition: 0.5s all;
+
+    &.active {
+      transform: scale(1);
     }
-}
-
-.modal__content {
-  padding: 20px;
-  border-radius: 12px;
-  background-color: $color-white;
-  height: 230px;
-  width: 400px;
-  color: $color-lilac;
-  transform: scale(0.5);
-  transition: 0.5s all;
-}
-
-.modal__content.active {
-  transform: scale(1);
+  }
 }
