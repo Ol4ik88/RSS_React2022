@@ -4,29 +4,27 @@ import CardCharacter from './CardCharacter';
 import { fakeCards } from 'data/data';
 import userEvent from '@testing-library/user-event';
 
-describe('<CardCharapter />', () => {
-  test('should render name on card', () => {
-    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
-    const name = screen.getByRole('heading');
+describe('<CardCharacter />', () => {
+  const onShowModalMock = jest.fn();
+  test('should render name', () => {
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={onShowModalMock} />);
+    const name = screen.getByText('Aegnor');
     expect(name).toBeInTheDocument();
   });
-  test('should render race on card', () => {
-    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
+  test('should render race', () => {
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={onShowModalMock} />);
     const race = screen.getByText(/race/i);
     expect(race).toBeInTheDocument();
-    const gender = screen.getByText(/gender/i);
-    expect(gender).toBeInTheDocument();
   });
-  test('should render gender on card', () => {
-    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={() => jest.fn} />);
+  test('should render gender', () => {
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={onShowModalMock} />);
     const gender = screen.getByText(/gender/i);
     expect(gender).toBeInTheDocument();
   });
   test('click on the card calls onClick', () => {
-    const onClick = jest.fn();
-    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={onClick} />);
+    render(<CardCharacter card={fakeCards.docs[0]} onShowModal={onShowModalMock} />);
     const cards = screen.getAllByTestId('CardCharacter');
     userEvent.click(cards[0]);
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onShowModalMock).toHaveBeenCalled();
   });
 });
