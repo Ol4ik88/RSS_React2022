@@ -1,38 +1,34 @@
 import React from 'react';
 import { IFormInput } from './FormInput.type';
 
-class FormInput extends React.Component<IFormInput> {
-  render() {
-    return (
-      <div className="cards-form__items" data-testid="form-input">
-        {this.props.name !== 'file' ? (
-          <label className="cards-form__label">
-            {this.props.label}
-            <input
-              className="cards-form__input"
-              ref={this.props.reference}
-              type={this.props.type}
-              name={this.props.name}
-            />
-          </label>
-        ) : (
-          <label className="cards-form__label-file">
-            {this.props.label}
-            <input
-              className="cards-form__input-file"
-              ref={this.props.reference}
-              type={this.props.type}
-              name={this.props.name}
-              accept=".jpg, .jpeg, .png"
-            />
-          </label>
-        )}
-        <div className="cards-form__error-message">
-          {this.props.isValid ? '' : this.props.errorMessage}
-        </div>
-      </div>
-    );
-  }
+function FormInput(props: IFormInput) {
+  return (
+    <div className="cards-form__items" data-testid="form-input">
+      {props.name !== 'file' ? (
+        <label className="cards-form__label">
+          {props.label}
+          <input
+            className="cards-form__input"
+            ref={props.reference}
+            type={props.type}
+            name={props.name}
+          />
+        </label>
+      ) : (
+        <label className="cards-form__label-file">
+          {props.label}
+          <input
+            className="cards-form__input-file"
+            ref={props.reference}
+            type={props.type}
+            name={props.name}
+            accept=".jpg, .jpeg, .png"
+          />
+        </label>
+      )}
+      <div className="cards-form__error-message">{props.isValid ? '' : props.errorMessage}</div>
+    </div>
+  );
 }
 
 export default FormInput;
