@@ -3,15 +3,15 @@ import { render } from '@testing-library/react';
 import Home from '../../pages/Home';
 import { fakeCards } from 'data/data';
 
-describe('<ListCharacter />', () => {
+describe('<CharactersList />', () => {
   test('should render list character', async () => {
     window.fetch = jest
       .fn()
-      .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));
+      .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve({}) }));
 
-    const { findByTestId } = render(<Home />);
-    const cardList = await findByTestId('ListCharacter');
-    expect(cardList).toBeInTheDocument();
+    const { findByText } = render(<Home />);
+    const notData = await findByText(/no data found/i);
+    expect(notData).toBeInTheDocument();
   });
 
   test('should render all cards', async () => {

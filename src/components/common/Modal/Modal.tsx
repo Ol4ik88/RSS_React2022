@@ -3,16 +3,16 @@ import './Modal.scss';
 import { IPropModal } from './Modal.type';
 
 function Modal(props: IPropModal) {
-  const { activeModal, setActive, card } = props;
+  const { isModalActive, setActive, card } = props;
   return (
     <div
-      className={activeModal ? 'modal active' : 'modal'}
+      className={isModalActive ? 'modal active' : 'modal'}
       onClick={() => setActive(false)}
       data-testid="modal-overlay"
     >
-      <div className="modal__btn"></div>
+      <div className="modal__close-btn"></div>
       <div
-        className={activeModal ? 'modal__content active' : 'modal__content'}
+        className={isModalActive ? 'modal__content active' : 'modal__content'}
         onClick={(e) => e.stopPropagation()}
       >
         <h2>{card.name}</h2>

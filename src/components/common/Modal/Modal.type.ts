@@ -2,6 +2,6 @@ import { ICharacter } from 'type/type';
 
 export interface IPropModal {
   card: ICharacter;
-  activeModal: boolean;
+  isModalActive: boolean;
   setActive: (active: boolean) => void;
 }
