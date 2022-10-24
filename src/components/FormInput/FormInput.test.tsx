@@ -1,8 +1,8 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormPage from 'pages/FormPage';
-import FormInput from './FormInput ';
+import FormInput from './FormInput';
 
 describe('<FormInput />', () => {
   describe('with type "text"', () => {
@@ -11,14 +11,14 @@ describe('<FormInput />', () => {
       const nameInput = screen.getByLabelText(/Name:/i);
       expect(nameInput).toBeInTheDocument();
     });
-    test('if the name is not valid, then render the error message', () => {
+    test('if the name is not valid, then render the error message', async () => {
       render(<FormPage />);
       const nameInput = screen.getByLabelText(/Name:/i);
       userEvent.type(nameInput, 'H');
 
       expect(screen.queryByText(/Please enter more than one character/i)).not.toBeInTheDocument();
       userEvent.keyboard('{Enter}');
-      expect(screen.queryByText(/Please enter more than one character/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Please enter more than one character/i)).toBeInTheDocument();
     });
   });
 
@@ -28,23 +28,23 @@ describe('<FormInput />', () => {
       const dateInput = screen.getByLabelText(/Birthday:/i);
       expect(dateInput).toBeInTheDocument();
     });
-    test('if the date is empty, then render the error message', () => {
+    test('if the date is empty, then render the error message', async () => {
       render(<FormPage />);
       const dateInput = screen.getByLabelText(/Birthday:/i);
       userEvent.type(dateInput, '');
 
       expect(screen.queryByText('Please enter correct birthday')).not.toBeInTheDocument();
       userEvent.keyboard('{Enter}');
-      expect(screen.queryByText('Please enter correct birthday')).toBeInTheDocument();
+      expect(await screen.findByText('Please enter correct birthday')).toBeInTheDocument();
     });
-    test('if the date is not valid for birthday, then render the error message', () => {
+    test('if the date is not valid for birthday, then render the error message', async () => {
       render(<FormPage />);
       const dateInput = screen.getByLabelText(/Birthday:/i);
       userEvent.type(dateInput, '2030-01-01');
 
-      expect(screen.queryByText('Please enter correct birthday')).not.toBeInTheDocument();
+      expect(screen.queryByText('Date must be less than today')).not.toBeInTheDocument();
       userEvent.keyboard('{Enter}');
-      expect(screen.queryByText('Please enter correct birthday')).toBeInTheDocument();
+      expect(await screen.findByText('Date must be less than today')).toBeInTheDocument();
     });
   });
 
@@ -56,14 +56,19 @@ describe('<FormInput />', () => {
     });
     test('should upload file', () => {
       const file = new File(['hello'], 'hello.png', { type: 'image/png' });
+      const registerMock = jest.fn();
+      const errors = { name: {} };
       render(
         <FormInput
           label="Profile picture:"
           type="file"
           name="file"
-          reference={createRef()}
-          isValid={true}
-          errorMessage="Please select picture"
+          register={registerMock}
+          errors={errors}
+          validationSchema={{
+            required: 'Please select picture',
+          }}
+          required
         />
       );
       const fileInput: HTMLInputElement = screen.getByLabelText(/Profile picture:/i);
@@ -71,14 +76,14 @@ describe('<FormInput />', () => {
       expect((fileInput.files as FileList)[0]).toStrictEqual(file);
       expect(fileInput.files).toHaveLength(1);
     });
-    test('if the file is not selected and the name is entered correctly, an error message will appear', () => {
+    test('if the file is not selected and the name is entered correctly, an error message will appear', async () => {
       render(<FormPage />);
       const nameInput = screen.getByLabelText(/Name:/i);
       userEvent.type(nameInput, 'my name');
 
       expect(screen.queryByText('Please select picture')).not.toBeInTheDocument();
       userEvent.keyboard('{Enter}');
-      expect(screen.queryByText('Please select picture')).toBeInTheDocument();
+      expect(await screen.findByText('Please select picture')).toBeInTheDocument();
     });
   });
 
@@ -88,7 +93,7 @@ describe('<FormInput />', () => {
       const ckeckboxInput = screen.getByLabelText(/Agree to /i);
       expect(ckeckboxInput).toBeInTheDocument();
     });
-    test('if no flag is not ckecked, then render an error message', () => {
+    test('if no flag is not ckecked, then render an error message', async () => {
       render(<FormPage />);
       expect(screen.queryByText('You should agree')).not.toBeInTheDocument();
 
@@ -100,7 +105,7 @@ describe('<FormInput />', () => {
       expect(ckeckboxInput).not.toBeChecked();
 
       userEvent.keyboard('{Enter}');
-      expect(screen.queryByText('You should agree')).toBeInTheDocument();
+      expect(await screen.findByText('You should agree')).toBeInTheDocument();
     });
   });
 });

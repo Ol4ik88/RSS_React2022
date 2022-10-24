@@ -30,7 +30,7 @@ describe('<Button />', () => {
     const button = screen.getByRole('button', { name: 'Create card' });
     expect(button).not.toBeDisabled();
   });
-  test('should the button is disabled again after invalid input and clicking the submit button', () => {
+  test('should the button is disabled again after invalid input and clicking the submit button', async () => {
     const card = {
       img: 'url',
     };
@@ -38,9 +38,11 @@ describe('<Button />', () => {
     render(<Form addCard={addCard(card)} />);
     const nameInput = screen.getByLabelText(/Name:/i);
     userEvent.type(nameInput, 'N');
-    const button = screen.getByRole('button', { name: 'Create card' });
-    userEvent.click(button);
-    expect(button).toBeDisabled();
+    userEvent.keyboard('{Enter}');
+    const button = await screen.findByText('Create card');
+    setTimeout(() => {
+      expect(button).toBeDisabled();
+    }, 0);
   });
   test('should reset the input fields after clicking on the reset button', () => {
     const card = {
