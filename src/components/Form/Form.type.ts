@@ -4,15 +4,11 @@ export interface IPropsForm {
   addCard: (card: ICard) => void;
 }
 
-export type ElementKeys = 'name' | 'birthday' | 'kind' | 'file' | 'isAgree';
-
-export interface IStateForm {
-  buttonsDisable: boolean;
-  name: boolean;
-  birthday: boolean;
-  kind: boolean;
-  img: string | null;
-  file: boolean;
+export interface IFormValues {
+  name: string;
+  birthday: string;
+  file: FileList | null;
+  kind: string;
+  switcher: boolean;
   isAgree: boolean;
-  isValid: boolean;
 }
