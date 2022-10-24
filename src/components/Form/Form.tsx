@@ -3,7 +3,7 @@ import { ICard } from 'type/type';
 import { useForm, FieldValues } from 'react-hook-form';
 import './Form.scss';
 import { IFormValues, IPropsForm } from './Form.type';
-import FormInput from 'components/FormInput/FormInput ';
+import FormInput from 'components/FormInput/FormInput';
 import FormSelect from 'components/FormSelect/FormSelect';
 import Switcher from 'components/common/Switcher/Switcher';
 import Button from 'components/common/Button/Button';

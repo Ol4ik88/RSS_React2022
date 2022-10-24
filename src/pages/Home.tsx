@@ -68,9 +68,7 @@ function Home() {
         label="Input example race characte: Elf, Human, Hobbit, Orc, Dwarf, Orc"
       />
       <>
-        <div>
-          <Loading isLoaded={isLoaded} />
-        </div>
+        <Loading isLoaded={isLoaded} />
         {cards.length !== 0 ? (
           <CharactersList cards={cards} onShowModal={showModal} />
         ) : (
