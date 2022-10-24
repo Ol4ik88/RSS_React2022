@@ -19,8 +19,8 @@ describe('<CharactersList />', () => {
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));
 
-    const { findAllByTestId } = render(<Home />);
-    const cards = await findAllByTestId('CardCharacter');
+    const { findAllByText } = render(<Home />);
+    const cards = await findAllByText(/Race:/);
     expect(cards).toHaveLength(2);
   });
 });
