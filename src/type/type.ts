@@ -10,7 +10,7 @@ export interface ICard {
   isAgree?: boolean;
 }
 
-export interface IStateCards {
+export interface IPropsCards {
   cards: ICard[];
 }
 
@@ -34,5 +34,3 @@ export interface IStateCharacter {
   showCard: ICharacter;
   activeModal: boolean;
 }
-
-export type PropsComponent = Record<string, unknown>;

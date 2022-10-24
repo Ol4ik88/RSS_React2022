@@ -1,8 +1,8 @@
 import React from 'react';
-import { IStateCards } from 'type/type';
+import { IPropsCards } from 'type/type';
 import CardItem from './CardItem/CardItem';
 import './CardList.scss';
-function CardList(props: IStateCards) {
+function CardList(props: IPropsCards) {
   return (
     <section className="cards" data-testid="card-list">
       {props.cards.map((card) => {
