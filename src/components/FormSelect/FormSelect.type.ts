@@ -1,6 +1,10 @@
+import { IFormValues } from 'components/Form/Form.type';
+import { ElementName } from 'components/FormInput/FormInput.type';
+import { UseFormRegister } from 'react-hook-form';
+
 export interface IFormSelect {
   label: string;
-  name: string;
+  name: ElementName;
   values: string[];
-  reference: React.RefObject<HTMLSelectElement>;
+  register: UseFormRegister<IFormValues>;
 }

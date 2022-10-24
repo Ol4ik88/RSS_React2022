@@ -1,5 +1,9 @@
+import { IFormValues } from 'components/Form/Form.type';
+import { ElementName } from 'components/FormInput/FormInput.type';
+import { UseFormRegister } from 'react-hook-form';
+
 export interface ISwitcer {
-  name: string;
+  name: ElementName;
   title: string;
-  reference: React.RefObject<HTMLInputElement>;
+  register: UseFormRegister<IFormValues>;
 }
