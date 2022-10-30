@@ -1,13 +1,15 @@
 import CardList from 'components/CardList/CardList';
 import Form from 'components/Form/Form';
-import React, { useState } from 'react';
+import React from 'react';
+import useAppContext from 'store/appContext';
 import { ICard } from 'type/type';
 
 function FormPage() {
-  const [cards, setCards] = useState<ICard[]>([]);
+  const { formData, saveFormResult } = useAppContext();
+  const { cards } = formData;
 
   const addCard = (card: ICard) => {
-    setCards([...cards, card]);
+    saveFormResult([...cards, card]);
   };
 
   return (

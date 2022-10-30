@@ -7,22 +7,22 @@ import FormInput from 'components/FormInput/FormInput';
 import FormSelect from 'components/FormSelect/FormSelect';
 import Switcher from 'components/common/Switcher/Switcher';
 import Button from 'components/common/Button/Button';
+import useAppContext from 'store/appContext';
 
 function Form(props: IPropsForm) {
+  const { formData, saveFormData } = useAppContext();
+  const { formValues } = formData;
+
   const {
     register,
     handleSubmit,
     reset,
     resetField,
+    getValues,
     formState: { errors, isDirty, isSubmitSuccessful },
   } = useForm<IFormValues>({
     defaultValues: {
-      name: '',
-      birthday: '',
-      file: null,
-      kind: 'Cat',
-      switcher: false,
-      isAgree: false,
+      ...formValues,
     },
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -62,6 +62,12 @@ function Form(props: IPropsForm) {
       }, 1000);
     }
   }, [isSubmitSuccessful, reset]);
+
+  useEffect(() => {
+    return () => {
+      saveFormData(getValues());
+    };
+  }, []);
 
   return (
     <form className="cards-form" data-testid="form" onSubmit={handleSubmit(onSubmit, onError)}>
