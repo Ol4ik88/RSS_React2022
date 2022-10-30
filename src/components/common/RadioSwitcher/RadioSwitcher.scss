@@ -1,0 +1,19 @@
+@import '../../../assets/style/const.scss';
+
+.switches__radio {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: center;
+  color: $color-lilac;
+  border: 2px solid $color-grey;
+  border-radius: 5px;
+  padding: 5px;
+  & input:hover {
+    cursor:pointer;
+  }
+}
+.switcher__btns {
+  display: flex;
+  gap:10px;
+}
