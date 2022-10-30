@@ -36,13 +36,11 @@ const appReducer = (state: GlobalContent, action: AppAction) => {
   const { type, payload } = action;
   switch (type) {
     case ActionKind.SAVE_HOME_SEARCH:
-      console.log('SAVE_HOME_DATA', payload);
       return {
         ...state,
         homeData: { ...state.homeData, textSearch: payload.textSearch },
       };
     case ActionKind.SAVE_HOME_PAGINATION:
-      console.log('SAVE_HOME_PAGINATION', payload);
       return {
         ...state,
         homeData: {
@@ -55,31 +53,26 @@ const appReducer = (state: GlobalContent, action: AppAction) => {
         },
       };
     case ActionKind.SAVE_HOME_LIMIT:
-      console.log('SAVE_HOME_LIMIT', payload);
       return {
         ...state,
         homeData: { ...state.homeData, limit: payload.limit },
       };
     case ActionKind.SAVE_HOME_SORTING:
-      console.log('SAVE_HOME_SORTING', payload);
       return {
         ...state,
         homeData: { ...state.homeData, sorting: payload.sorting },
       };
     case ActionKind.SAVE_HOME_RESULT:
-      console.log('SAVE_HOME_RESULT', payload);
       return {
         ...state,
         homeData: { ...state.homeData, cards: payload.cards },
       };
     case ActionKind.SAVE_FORM_DATA:
-      console.log('SAVE_FORM_DATA', payload);
       return {
         ...state,
         formData: { ...state.formData, formValues: payload.formValues },
       };
     case ActionKind.SAVE_FORM_RESULT:
-      console.log('SAVE_FORM_RESULT', payload);
       return {
         ...state,
         formData: { ...state.formData, cards: payload.cards },

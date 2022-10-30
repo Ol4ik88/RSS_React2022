@@ -61,13 +61,11 @@ function Home() {
 
   useEffect(() => {
     handlePageChange(currentPage);
-    console.log(`use1`);
   }, []);
 
   useEffect(() => {
     if (isClickSort || isClickLimit) {
       filterList(textSearch, limit, sorting);
-      console.log(`use2 ${limit} ${sorting}`);
     }
   }, [limit, sorting]);
 
