@@ -5,20 +5,23 @@ import Home from 'pages/Home';
 import About from 'pages/About';
 import PageNotFound from 'pages/PageNotFound';
 import FormPage from 'pages/FormPage';
+import { AppProvider } from 'store/appContext';
 
 function App() {
   return (
-    <div className="App-container">
-      <Header />
-      <div className="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/form" element={<FormPage />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+    <AppProvider>
+      <div className="App-container">
+        <Header />
+        <div className="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/form" element={<FormPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </AppProvider>
   );
 }
 
