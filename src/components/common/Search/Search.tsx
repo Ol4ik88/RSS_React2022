@@ -1,41 +1,40 @@
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useEffect, useRef } from 'react';
+import useAppContext from 'store/appContext';
 import './Search.scss';
 import { IFilterSearch } from './Search.type';
 
 function Search(props: IFilterSearch) {
-  const [searchQuery, setSearchQuery] = useState(localStorage.getItem('searchQuery') || '');
-  const searchRef = useRef(searchQuery);
+  const { homeData, saveHomeSearch } = useAppContext();
+  const { textSearch } = homeData;
+  const searchRef = useRef(textSearch);
 
   function onHandleClick(e: FormEvent) {
     e.preventDefault();
-    props.filter(searchQuery);
+    props.filter(textSearch);
   }
   useEffect(() => {
-    searchRef.current = searchQuery;
-  }, [searchQuery]);
+    searchRef.current = textSearch;
+  }, [textSearch]);
 
   useEffect(() => {
-    setSearchQuery(searchQuery);
     return () => {
       localStorage.setItem('searchQuery', searchRef.current);
     };
   }, []);
 
   return (
-    <section className="search">
-      <form className="search__form">
-        <input
-          data-testid="Search"
-          className="search__input"
-          type="text"
-          placeholder="Enter race character"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <label className="search__label">{props.label}</label>
-        <button type="submit" onClick={(e) => onHandleClick(e)} />
-      </form>
-    </section>
+    <form className="search__form">
+      <input
+        data-testid="Search"
+        className="search__input"
+        type="text"
+        placeholder="Enter race character"
+        value={textSearch}
+        onChange={(e) => saveHomeSearch(e.target.value)}
+      />
+      <label className="search__label">{props.label}</label>
+      <button type="submit" onClick={(e) => onHandleClick(e)} />
+    </form>
   );
 }
 

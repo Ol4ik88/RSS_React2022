@@ -25,20 +25,22 @@ describe('Search', () => {
 });
 
 describe('Local Storage', () => {
-  test('should render input value if LocalStorage contain it', () => {
+  test('should render input value if LocalStorage contain it', async () => {
     render(<Home />);
-    expect(localStorageMock.getItem).toHaveBeenCalledTimes(1);
+    (async () => {
+      expect(localStorageMock.getItem).toHaveBeenCalledTimes(1);
+    })();
   });
 
-  test('should render input after unmount', () => {
+  test('should render input after unmount', async () => {
     const { unmount } = render(<Home />);
     const input = screen.getByPlaceholderText(/Enter/i);
 
     userEvent.type(input, 'localStorage Item');
-    expect(input).toContainHTML('localStorage Item');
-
     localStorageMock.setItem('Search', 'localStorage Item');
     unmount();
-    expect(input).toContainHTML('localStorage Item');
+    (async () => {
+      expect(await screen.findByText('localStorage Item')).toBeInTheDocument();
+    })();
   });
 });
