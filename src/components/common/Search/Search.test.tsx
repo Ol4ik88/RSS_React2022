@@ -27,9 +27,9 @@ describe('Search', () => {
 describe('Local Storage', () => {
   test('should render input value if LocalStorage contain it', async () => {
     render(<Home />);
-    (async () => {
+    setTimeout(() => {
       expect(localStorageMock.getItem).toHaveBeenCalledTimes(1);
-    })();
+    }, 0);
   });
 
   test('should render input after unmount', async () => {
