@@ -5,3 +5,16 @@
   flex-direction: column;
   gap:20px;
 }
+
+.search {
+  display: flex;
+  gap: 20px;
+}
+
+.pagination {
+  margin: 20px auto;
+  &.active a {
+    background-color: $color-lilac;
+    border-color: $color-lilac;
+  }
+}

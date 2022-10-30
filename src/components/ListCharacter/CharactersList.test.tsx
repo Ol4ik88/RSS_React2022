@@ -18,9 +18,10 @@ describe('<CharactersList />', () => {
     window.fetch = jest
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));
-
     const { findAllByText } = render(<Home />);
-    const cards = await findAllByText(/Race:/);
-    expect(cards).toHaveLength(2);
+    (async () => {
+      const cards = await findAllByText(/Race:/);
+      expect(cards).toHaveLength(2);
+    })();
   });
 });
