@@ -1,0 +1,13 @@
+@import '../../assets/style/const.scss';
+
+.information {
+  color: $color-lilac;
+  &.card {
+    border: none;
+    box-shadow: none;
+    gap:0px;
+    padding: 0px;
+    width: 350px;
+    margin: 0 auto;
+  }
+}
