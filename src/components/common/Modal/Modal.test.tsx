@@ -3,6 +3,11 @@ import { render, screen } from '@testing-library/react';
 import { fakeCards } from 'data/data';
 import Modal from './Modal';
 
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 describe('<Modal />', () => {
   const closeModal = jest.fn();
   test('should have active class when modal is active', async () => {

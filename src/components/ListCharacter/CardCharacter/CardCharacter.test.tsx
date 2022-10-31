@@ -4,6 +4,11 @@ import CardCharacter from './CardCharacter';
 import { fakeCards } from 'data/data';
 import userEvent from '@testing-library/user-event';
 
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 describe('<CardCharacter />', () => {
   const onShowModalMock = jest.fn();
   test('should render name', () => {

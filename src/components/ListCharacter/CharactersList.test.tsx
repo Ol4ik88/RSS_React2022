@@ -3,6 +3,12 @@ import { render } from '@testing-library/react';
 import Home from '../../pages/Home';
 import { fakeCards } from 'data/data';
 
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 describe('<CharactersList />', () => {
   test('should render list character', async () => {
     window.fetch = jest
