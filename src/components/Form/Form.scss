@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 45px;
     gap:5px;
   }
 
@@ -21,8 +20,9 @@
   &__select {
     font-size: 20px;
     color: $color-lilac;
+    font-weight: 400;
   }
-
+  
   &__input,
   &__select {
     border-radius: 5px;

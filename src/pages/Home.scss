@@ -13,7 +13,8 @@
 
 .pagination {
   margin: 20px auto;
-  &.active a {
+  & .active a,
+  & .active a:hover {
     background-color: $color-lilac;
     border-color: $color-lilac;
   }

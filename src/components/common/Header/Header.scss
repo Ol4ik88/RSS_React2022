@@ -10,10 +10,13 @@
   justify-content: center;
   align-items: center;
 }
-
+h1 {
+  font-size: 28px;
+}
 .button,
 .link,
 a.inactive {
+  font-size: 14px;
   width: 130px;
   color: white;
   border-radius: 5px;
