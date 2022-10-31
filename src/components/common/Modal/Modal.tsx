@@ -1,5 +1,5 @@
-import CardCharacter from 'components/ListCharacter/CardCharacter/CardCharacter';
 import React from 'react';
+import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import './Modal.scss';
 import { IPropModal } from './Modal.type';
 
@@ -16,14 +16,8 @@ function Modal(props: IPropModal) {
         className={isModalActive ? 'modal__content active' : 'modal__content'}
         onClick={(e) => e.stopPropagation()}
       >
-        <CardCharacter card={card} key={card._id} />
-        {card.height && <div>Height: {card.height}</div>}
-        {card.birth && <div>Birth: {card.birth}</div>}
-        {card.spouse && <div>Spouse: {card.spouse}</div>}
-        {card.death && <div>Death: {card.death}</div>}
-        {card.realm && <div>Realm: {card.realm}</div>}
-        {card.hair && <div>Hair: {card.hair}</div>}
-        {card.wikiUrl && <div>Wiki Url: {card.wikiUrl}</div>}
+        <h2>{card.name}</h2>
+        <CharacterInfo card={card} />
       </div>
     </div>
   );
