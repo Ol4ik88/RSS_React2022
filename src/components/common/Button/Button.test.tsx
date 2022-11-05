@@ -46,9 +46,8 @@ describe('<Button />', () => {
     userEvent.type(nameInput, 'N');
     userEvent.keyboard('{Enter}');
     const button = await screen.findByText('Create card');
-    setTimeout(() => {
-      expect(button).toBeDisabled();
-    }, 0);
+    await screen.findByText(/Please enter more than one character/i);
+    expect(button).toBeDisabled();
     userEvent.clear(nameInput);
   });
   test('should reset the input fields after clicking on the reset button', () => {

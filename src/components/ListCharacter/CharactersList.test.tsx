@@ -35,9 +35,7 @@ describe('<CharactersList />', () => {
         <Home />
       </Provider>
     );
-    (async () => {
-      const cards = await findAllByText(/Race:/);
-      expect(cards).toHaveLength(2);
-    })();
+    const cards = await findAllByText(/Race:/);
+    expect(cards).toHaveLength(2);
   });
 });
