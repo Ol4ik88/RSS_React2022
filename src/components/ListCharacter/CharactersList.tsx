@@ -8,7 +8,7 @@ function CharactersList(props: ICharactersList) {
     <>
       <h2>Character Information about The Lord of the Rings</h2>
       <section className="cards">
-        {props.cards.map((card) => {
+        {props.cards?.map((card) => {
           return <CardCharacter card={card} key={card._id} />;
         })}
       </section>

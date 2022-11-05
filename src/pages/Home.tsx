@@ -5,12 +5,10 @@ import CharactersList from 'components/ListCharacter/CharactersList';
 import './Home.scss';
 import Loading from 'components/common/Loading/Loading';
 import Modal from 'components/common/Modal/Modal';
-import useAppContext from 'store/appContext';
 import RadioSwitcher from 'components/common/RadioSwitcher/RadioSwitcher';
 import Pagination from 'react-js-pagination';
-
-const HOST = 'https://the-one-api.dev/v2/';
-const TOKEN = 'utxRxt1T7kr6gmJDi5LI';
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { setCards, setSorting, setLimit, selectHomeState } from 'store/homeSlice';
 
 function Home() {
   const [isLoaded, setIsLoaded] = useState(true);
@@ -18,10 +16,9 @@ function Home() {
   const [isClickLimit, setIsClickLimit] = useState(false);
   const [showCard, setShowCard] = useState({} as ICharacter);
   const [activeModal, setActiveModal] = useState(false);
-  const { homeData, saveHomeResult, saveHomeLimit, saveHomeSort, saveHomePagination } =
-    useAppContext();
-  const { cards, textSearch, limit, sorting, paginationOptioons } = homeData;
-  const { currentPage, pageCount, totalElements } = paginationOptioons;
+  const { cards, textSearch, limit, sorting, currentPage, pageCount, totalElements } =
+    useAppSelector(selectHomeState);
+  const dispatch = useAppDispatch();
 
   const showModal = (content: ICharacter) => {
     setShowCard(content);
@@ -36,22 +33,11 @@ function Home() {
   ) {
     setIsLoaded(false);
     try {
-      const response = await fetch(
-        `${HOST}character?race=/${text}/i&sort=${sortCards}&limit=${limitCards}&page=${pageNumber}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            Accept: 'application/json',
-          },
-        }
-      );
-      const data = await response.json();
-      saveHomeResult(data.docs);
-      saveHomePagination(pageNumber, data.pages, data.total);
-      setIsLoaded(true);
+      await dispatch(setCards(text, limitCards, sortCards, pageNumber));
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoaded(true);
     }
   }
 
@@ -67,7 +53,7 @@ function Home() {
     if (isClickSort || isClickLimit) {
       filterList(textSearch, limit, sorting);
     }
-  }, [limit, sorting]);
+  }, [limit, sorting, isClickSort, isClickLimit]);
 
   return (
     <section className="home container">
@@ -82,7 +68,7 @@ function Home() {
           name="limit"
           values={['10', '50', '100']}
           option={limit}
-          setOption={saveHomeLimit}
+          setOption={setLimit}
           isClick={() => setIsClickLimit(true)}
         />
         <RadioSwitcher
@@ -90,18 +76,18 @@ function Home() {
           name="sorting"
           values={['name:asc', 'name:desc', 'gender:asc', 'gender:desc']}
           option={sorting}
-          setOption={saveHomeSort}
+          setOption={setSorting}
           isClick={() => setIsClickSort(true)}
         />
       </section>
 
       <>
         <Loading isLoaded={isLoaded} />
-        {cards.length !== 0 ? (
+        {cards?.length !== 0 ? (
           <>
             <Pagination
               activePage={currentPage}
-              itemsCountPerPage={+limit}
+              itemsCountPerPage={Number(limit)}
               totalItemsCount={totalElements}
               pageRangeDisplayed={pageCount > 1 ? 3 : 1}
               onChange={handlePageChange}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { IRadioSwitcher } from './RadioSwitcher.type';
 import './RadioSwitcher.scss';
+import { useAppDispatch } from 'store/hook';
 
 const RadioSwitcher: React.FC<IRadioSwitcher> = ({
   label,
@@ -10,8 +11,9 @@ const RadioSwitcher: React.FC<IRadioSwitcher> = ({
   setOption,
   isClick,
 }) => {
+  const dispatch = useAppDispatch();
   function onChangeValue(event: React.ChangeEvent<HTMLInputElement>) {
-    setOption(event.target.value);
+    dispatch(setOption(event.target.value));
     isClick();
   }
   return (
