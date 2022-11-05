@@ -1,15 +1,16 @@
 import CardList from 'components/CardList/CardList';
 import Form from 'components/Form/Form';
 import React from 'react';
-import useAppContext from 'store/appContext';
+import { selectFormState, setFormCards } from 'store/formSlice';
+import { useAppDispatch, useAppSelector } from 'store/hook';
 import { ICard } from 'type/type';
 
 function FormPage() {
-  const { formData, saveFormResult } = useAppContext();
-  const { cards } = formData;
+  const { cards } = useAppSelector(selectFormState);
+  const dispatch = useAppDispatch();
 
   const addCard = (card: ICard) => {
-    saveFormResult([...cards, card]);
+    dispatch(setFormCards([...cards, card]));
   };
 
   return (

@@ -7,11 +7,12 @@ import FormInput from 'components/FormInput/FormInput';
 import FormSelect from 'components/FormSelect/FormSelect';
 import Switcher from 'components/common/Switcher/Switcher';
 import Button from 'components/common/Button/Button';
-import useAppContext from 'store/appContext';
+import { useAppDispatch, useAppSelector } from 'store/hook';
+import { selectFormState, setFormValues } from 'store/formSlice';
 
 function Form(props: IPropsForm) {
-  const { formData, saveFormData } = useAppContext();
-  const { formValues } = formData;
+  const { formValues } = useAppSelector(selectFormState);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -57,15 +58,18 @@ function Form(props: IPropsForm) {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         reset();
       }, 1000);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [isSubmitSuccessful, reset]);
 
   useEffect(() => {
     return () => {
-      saveFormData(getValues());
+      dispatch(setFormValues(getValues()));
     };
   }, []);
 
