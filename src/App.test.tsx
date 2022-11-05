@@ -3,13 +3,17 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
 
 describe('Router', () => {
   test('should render home page', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const homePageLink = screen.getByText('Home');
 
@@ -19,9 +23,11 @@ describe('Router', () => {
 
   test('should render about page', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const aboutPageLink = screen.getByText('About');
 
@@ -31,9 +37,11 @@ describe('Router', () => {
 
   test('should render form page', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const formPageLink = screen.getByText('Form');
 
