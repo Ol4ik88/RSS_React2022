@@ -7,6 +7,7 @@ export const store = configureStore({
     home: homeReducer,
     form: formReducer,
   },
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export type AppDispatch = typeof store.dispatch;
