@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Home from '../../pages/Home';
 import { fakeCards } from 'data/data';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
@@ -15,7 +17,11 @@ describe('<CharactersList />', () => {
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve({}) }));
 
-    const { findByText } = render(<Home />);
+    const { findByText } = render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     const notData = await findByText(/no data found/i);
     expect(notData).toBeInTheDocument();
   });
@@ -24,7 +30,11 @@ describe('<CharactersList />', () => {
     window.fetch = jest
       .fn()
       .mockImplementationOnce(() => Promise.resolve({ json: () => Promise.resolve(fakeCards) }));
-    const { findAllByText } = render(<Home />);
+    const { findAllByText } = render(
+      <Provider store={store}>
+        <Home />
+      </Provider>
+    );
     (async () => {
       const cards = await findAllByText(/Race:/);
       expect(cards).toHaveLength(2);

@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../../../App';
 import userEvent from '@testing-library/user-event';
 import Header from './Header';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
 
 describe('<Header />', () => {
   test('should render header', () => {
@@ -17,18 +19,22 @@ describe('<Header />', () => {
   });
   test('should render all links', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(3);
   });
   test('should render current home name', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const homePageLink = screen.getByText('Home');
 
@@ -38,9 +44,11 @@ describe('<Header />', () => {
   });
   test('should render current about name', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const aboutPageLink = screen.getByText('About');
 
@@ -50,9 +58,11 @@ describe('<Header />', () => {
   });
   test('should render current form name', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     const formPageLink = screen.getByText('Form');
 

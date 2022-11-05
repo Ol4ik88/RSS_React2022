@@ -3,16 +3,26 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormPage from 'pages/FormPage';
 import FormInput from './FormInput';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
 
 describe('<FormInput />', () => {
   describe('with type "text"', () => {
     test('should render nameInput', () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const nameInput = screen.getByLabelText(/Name:/i);
       expect(nameInput).toBeInTheDocument();
     });
     test('if the name is not valid, then render the error message', async () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const nameInput = screen.getByLabelText(/Name:/i);
       userEvent.type(nameInput, 'H');
 
@@ -24,12 +34,20 @@ describe('<FormInput />', () => {
 
   describe('with type "date"', () => {
     test('should render dateInput', () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const dateInput = screen.getByLabelText(/Birthday:/i);
       expect(dateInput).toBeInTheDocument();
     });
     test('if the date is empty, then render the error message', async () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const dateInput = screen.getByLabelText(/Birthday:/i);
       userEvent.type(dateInput, '');
 
@@ -38,7 +56,11 @@ describe('<FormInput />', () => {
       expect(await screen.findByText('Please enter correct birthday')).toBeInTheDocument();
     });
     test('if the date is not valid for birthday, then render the error message', async () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const dateInput = screen.getByLabelText(/Birthday:/i);
       userEvent.type(dateInput, '2030-01-01');
 
@@ -50,7 +72,11 @@ describe('<FormInput />', () => {
 
   describe(' with type "file"', () => {
     test('should render fileInput', () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const fileInput = screen.getByLabelText(/Profile picture:/i);
       expect(fileInput).toBeInTheDocument();
     });
@@ -59,17 +85,19 @@ describe('<FormInput />', () => {
       const registerMock = jest.fn();
       const errors = { name: {} };
       render(
-        <FormInput
-          label="Profile picture:"
-          type="file"
-          name="file"
-          register={registerMock}
-          errors={errors}
-          validationSchema={{
-            required: 'Please select picture',
-          }}
-          required
-        />
+        <Provider store={store}>
+          <FormInput
+            label="Profile picture:"
+            type="file"
+            name="file"
+            register={registerMock}
+            errors={errors}
+            validationSchema={{
+              required: 'Please select picture',
+            }}
+            required
+          />
+        </Provider>
       );
       const fileInput: HTMLInputElement = screen.getByLabelText(/Profile picture:/i);
       userEvent.upload(fileInput, file);
@@ -77,7 +105,11 @@ describe('<FormInput />', () => {
       expect(fileInput.files).toHaveLength(1);
     });
     test('if the file is not selected and the name is entered correctly, an error message will appear', async () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const nameInput = screen.getByLabelText(/Name:/i);
       userEvent.type(nameInput, 'my name');
 
@@ -89,12 +121,20 @@ describe('<FormInput />', () => {
 
   describe('with type "checkbox"', () => {
     test('should render nameInput', () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       const ckeckboxInput = screen.getByLabelText(/Agree to /i);
       expect(ckeckboxInput).toBeInTheDocument();
     });
     test('if no flag is not ckecked, then render an error message', async () => {
-      render(<FormPage />);
+      render(
+        <Provider store={store}>
+          <FormPage />
+        </Provider>
+      );
       expect(screen.queryByText('You should agree')).not.toBeInTheDocument();
 
       const ckeckboxInput = screen.getByLabelText(/Agree to /i);
